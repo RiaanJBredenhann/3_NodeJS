@@ -1,12 +1,12 @@
 {
-  "name": "recipe_connection",
+  "name": "class",
   "version": "1.0.0",
-  "description": "An app to share cooking recipes",
-  "main": "main.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jon Wexler",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "cities": "^2.0.0"
