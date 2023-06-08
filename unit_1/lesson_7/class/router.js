@@ -1,5 +1,5 @@
 // this module includes a routes object that hold key-value pairs mapped to
-// GET and POST requests throughj their respective functions
+// GET and POST requests through their respective functions
 
 // the handle function is a callback function to createServer in main.js
 
