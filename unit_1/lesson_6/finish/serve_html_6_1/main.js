@@ -4,12 +4,14 @@ const port = 3000,
   http = require("http"),
   httpStatus = require("http-status-codes"),
   fs = require("fs");
+
 const getViewUrl = url => {
   return `views${url}.html`;
 };
-http
-  .createServer((req, res) => {
+
+http.createServer((req, res) => {
     let viewUrl = getViewUrl(req.url);
+
     fs.readFile(viewUrl, (error, data) => {
       if (error) {
         res.writeHead(httpStatus.NOT_FOUND);
@@ -24,4 +26,5 @@ http
     });
   })
   .listen(port);
+  
 console.log(`The server has started and is listening on port number: ${port}`);

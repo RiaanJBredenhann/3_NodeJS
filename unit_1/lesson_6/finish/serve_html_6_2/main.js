@@ -21,26 +21,31 @@ http
         "Content-Type": "text/html"
       });
       customReadFile(`./views${url}`, res);
+
     } else if (url.indexOf(".js") !== -1) {
       res.writeHead(httpStatus.OK, {
         "Content-Type": "text/javascript"
       });
       customReadFile(`./public/js${url}`, res);
+
     } else if (url.indexOf(".css") !== -1) {
       res.writeHead(httpStatus.OK, {
         "Content-Type": "text/css"
       });
       customReadFile(`./public/css${url}`, res);
+
     } else if (url.indexOf(".png") !== -1) {
       res.writeHead(httpStatus.OK, {
         "Content-Type": "image/png"
       });
       customReadFile(`./public/images${url}`, res);
+      
     } else {
       sendErrorResponse(res);
     }
   })
   .listen(3000);
+
 console.log(`The server is listening on port number: ${port}`);
 
 const customReadFile = (file_path, res) => {
