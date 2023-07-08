@@ -4,7 +4,9 @@
 //     res.end('Hello Node.js')
 // })
 
-// server.listen(3000)
+// server.listen(3000);
+
+//=================================
 
 // const http = require('http')
 // const server = http.createServer((req, res) => {
@@ -19,7 +21,9 @@
 //         res.end('page not found')
 //     }
 // })
-// server.listen(3000)
+// server.listen(3000);
+
+//================================
 
 const http = require('http')
 const fs = require('fs')
@@ -39,4 +43,4 @@ const server = http.createServer((req, res) => {
         res.end(notFoundPage)
     }
 })
-server.listen(3000)
+server.listen(3000);
