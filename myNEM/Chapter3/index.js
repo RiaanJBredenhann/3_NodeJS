@@ -17,14 +17,14 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
-app.get('/about', (req,res) => {
+app.get('/about', (req, res) => {
     res.render("about");
 });
 
-app.get('/contact', (req,res) => {
+app.get('/contact', (req, res) => {
     res.render("contact");
 });
 
-app.get('/post', (req,res) => {
+app.get('/post', (req, res) => {
     res.render("post");
 });
