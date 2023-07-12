@@ -42,7 +42,21 @@ BlogPost.findByIdAndUpdate(id, {
     console.log(error, blogspot);
 });
 
+// find the updated document
+BlogPost.find({
+    title: "Updated Title"
+}, (error, blogspot) => {
+    console.log(error, blogspot)
+});
+
 // we can delete a document
 BlogPost.findByIdAndDelete(id, (error, blogspot) => {
     console.log(error, blogspot);
+});
+
+// try to find deleted document
+BlogPost.find({
+    title: "Updated Title"
+}, (error, blogspot) => {
+    console.log(error, blogspot)
 });
