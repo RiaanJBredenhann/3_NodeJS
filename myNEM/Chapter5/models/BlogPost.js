@@ -2,7 +2,7 @@
 // models are objects that represent collections in our database
 // a schema represents how a collection looks
 
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const BlogPostSchema = new Schema({
