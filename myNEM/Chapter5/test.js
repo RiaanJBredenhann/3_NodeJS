@@ -21,8 +21,10 @@ BlogPost.create({
 BlogPost.find({
     title: "The Mythbuster's Guide to Saving Money on Energy Bills"
 }).then(blogspot => {
+    console.log("Found a Blogpost by the full title");
     console.log(blogspot);
 }).catch(error => {
+    console.log("Could not find a Blogpost by the full title");
     console.log(error);
 });
 
@@ -30,8 +32,10 @@ BlogPost.find({
 BlogPost.find({
     title: /The/
 }).then(blogspot => {
+    console.log("Found a Blogpost by a single word");
     console.log(blogspot);
 }).catch(error => {
+    console.log("Could not find a Blogpost by a single word");
     console.log(error);
 });
 
@@ -40,8 +44,10 @@ var id = "5cb436980b33147489eadfbb";
 BlogPost.findById(
     id
 ).then(blogspot => {
+    console.log("Found a Blogpost by it's ID");
     console.log(blogspot);
 }).catch(error => {
+    console.log("Could not find a Blogpost by it's ID");
     console.log(error);
 });
 
@@ -49,8 +55,10 @@ BlogPost.findById(
 BlogPost.findByIdAndUpdate(id, {
     title: "Updated Title"
 }).then(blogspot => {
+    console.log("Updated a Blogpost");
     console.log(blogspot);
 }).catch(error => {
+    console.log("Could not update a Blogpost");
     console.log(error);
 });
 
@@ -58,8 +66,10 @@ BlogPost.findByIdAndUpdate(id, {
 BlogPost.find({
     title: "Updated Title"
 }).then(blogspot => {
+    console.log("Found an updated Blogpost");
     console.log(blogspot);
 }).catch(error => {
+    console.log("could not find an updated Blogpost");
     console.log(error);
 });
 
@@ -67,8 +77,10 @@ BlogPost.find({
 BlogPost.findByIdAndDelete(
     id
 ).then(blogspot => {
+    console.log("Deleted a Blogpost");
     console.log(blogspot);
 }).catch(error => {
+    console.log("Could not delete a Blogpost");
     console.log(error);
 });
 
@@ -76,7 +88,9 @@ BlogPost.findByIdAndDelete(
 BlogPost.find({
     title: "Updated Title"
 }).then(blogspot => {
+    console.log("Found a deleted Blogpost");
     console.log(blogspot);
 }).catch(error => {
+    console.log("Could not find a deleted Blogpost");
     console.log(error);
 });
