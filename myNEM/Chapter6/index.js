@@ -1,11 +1,16 @@
 const express = require("express");
 const path = require("path");
 const ejs = require("ejs");
+const BlogPost = require('./models/BlogPost');
 const app = new express();
 // mongoose is a package that allows us to communicate with our database
 const mongoose = require("mongoose");
 
 app.use(express.static("public"));
+// the next 2 functions enable the app to handle POST requests
+app.use(express.json());
+app.use(express.urlencoded());
+
 // we connect to our database with mongoose.connect
 mongoose.connect("mongodb://127.0.0.1/my_database", {useNewUrlParser: true});
 
@@ -27,6 +32,22 @@ app.get('/contact', (req, res) => {
 
 app.get('/post', (req, res) => {
     res.render("post");
+});
+
+app.get('/posts/new', (req, res) => {
+    res.render('create');
+});
+
+// when form is submitted, user will make a POST request
+app.post('/posts/store', (req, res) => {
+    console.log(req.body);
+    BlogPost.create(
+        req.body
+    ).then(blogspot => {
+        res.redirect('/');
+    }).catch(error => {
+        console.log(error);
+    });
 });
 
 app.listen(3000, () => {
