@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 app.use(express.static("public"));
 // the next 2 functions enable the app to handle POST requests
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 // we connect to our database with mongoose.connect
 mongoose.connect("mongodb://127.0.0.1/my_database", {useNewUrlParser: true});
