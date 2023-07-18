@@ -34,7 +34,7 @@ app.get('/contact', (req, res) => {
 });
 
 app.get('/post/:id', async (req, res) => {
-    const blogpost = await Blogpost.findByID(req.params.id)
+    const blogpost = await BlogPost.findById(req.params.id)
     res.render("post", {
         blogpost
     });
@@ -50,14 +50,9 @@ app.get('/posts/new', (req, res) => {
 // the completion of the current line before the below line can be executed.
 app.post('/posts/store', async (req, res) => {
     console.log(req.body);
-    await BlogPost.create(
-        req.body
-    ).then(blogspot => {
-        console.log(blogspot);
-        res.redirect('/');
-    }).catch(error => {
-        console.log(error);
-    });
+    await BlogPost.create(req.body)
+        .then(blogspot => res.redirect('/'))
+        .catch(error => console.log(error))
 });
 
 app.listen(3000, () => {
