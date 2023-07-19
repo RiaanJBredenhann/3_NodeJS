@@ -13,7 +13,8 @@ const BlogPostSchema = new Schema({
     datePosted: {
         type: Date,
         default: new Date()
-    }
+    },
+    image: String
 });
 
 // We access the database via mongoose.model. 

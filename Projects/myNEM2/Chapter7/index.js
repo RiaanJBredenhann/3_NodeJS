@@ -49,9 +49,9 @@ app.get('/posts/new', (req, res) => {
 app.post('/posts/store', (req, res) => {
     let image = req.files.image;
     image.mv(path.resolve(__dirname, 'public/img', image.name), async (error) => {
-        await BlogPost.create(req.body)
+        await BlogPost.create({...req.body, image: '/img/' + image.name})
         .then(res.redirect('/'))
-        .catch(error => { console.log(error)})
+        .catch(error => { console.log(error)});
     });
 });
 
