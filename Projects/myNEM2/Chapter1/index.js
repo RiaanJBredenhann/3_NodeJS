@@ -1,9 +1,8 @@
-// creating our first server
 const http = require('http');
 const fs = require('fs');
 const homePage = fs.readFileSync('index.html');
 const aboutPage = fs.readFileSync('about.html');
-const contactPage = fs.readFileSync('about.html');
+const contactPage = fs.readFileSync('contact.html');
 const notFoundPage = fs.readFileSync('notfound.html');
 
 const server = http.createServer((req, res) => {
@@ -20,4 +19,3 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(3000);
-
