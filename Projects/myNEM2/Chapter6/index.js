@@ -44,10 +44,13 @@ app.get('/posts/new', (req, res) => {
     res.render('create');
 });
 
-app.post('/posts/store', async (req,res) => {
-    await BlogPost.create(req.body);
-    res.redirect('/');
-})
+app.post('/posts/store', async (req, res) => {
+    await BlogPost.create(req.body)
+        .then(blogspot => { 
+            res.redirect('/')})
+        .catch(error => { 
+            console.log(error)})
+});
 
 app.listen(3000, () => {
     console.log("App listening on port 3000");
