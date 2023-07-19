@@ -13,9 +13,9 @@ BlogPost.create({
     "nerdery opens up. You know those bullet-point lists. You start spotting " +
     "them everything at this time of year. They go like this:"
 }).then(blogspot => {
-    console.log("Successfully found /n" + blogspot);
+    console.log("Successfully found \n" + blogspot);
 }).catch(error => {
-    console.log("Failed to find /n" + error);
+    console.log("Failed to find \n" + error);
 });
 
 // finding a blogpost by title
