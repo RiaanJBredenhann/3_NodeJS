@@ -22,9 +22,9 @@ BlogPost.create({
 BlogPost.find({
     title: "The Mythbuster Guide to Saving Money on Energy Bills"
 }).then(blogspot => {
-    console.log("Successfully found /n" + blogspot);
+    console.log("Successfully found \n" + blogspot);
 }).catch(error => {
-    console.log("Failed to find /n" + error);
+    console.log("Failed to find \n" + error);
 });
 
 var id = "5cb436980b33147489eadfbb";
@@ -32,15 +32,15 @@ var id = "5cb436980b33147489eadfbb";
 BlogPost.findByIdAndUpdate(id, {
     title: "Updated title"
 }).then(blogspot => {
-    console.log("Successfully found and updated /n" + blogspot);
+    console.log("Successfully found and updated \n" + blogspot);
 }).catch(error => {
-    console.log("Failed to find and update /n" + error);
+    console.log("Failed to find and update \n" + error);
 });
 
 // finding a record bi ID and deleting it
 BlogPost.findByIdAndDelete(id)
     .then(blogspot => {
-        console.log("Successfully found and deleted /n" + blogspot);
+        console.log("Successfully found and deleted \n" + blogspot);
     }).catch(error => {
-        console.log("Failed to find and delete /n" + error);
+        console.log("Failed to find and delete \n" + error);
     });
