@@ -8,7 +8,12 @@ const Schema = mongoose.Schema;
 
 const BlogPostSchema = new Schema({
     title: String,
-    body: String
+    body: String,
+    username: String,
+    datePosted: {
+        type: Date,
+        default: new Date()
+    }
 });
 
 // We access the database via mongoose.model. 
