@@ -3,6 +3,7 @@ const path = require('path');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
 const BlogPost = require('./models/BlogPost.js');
+const fileUploaud = require('express-fileupload');
 const app = new express();
 app.use(express.static('public'));
 // the next 2 functions enable the app to handle POST requests
@@ -11,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 // With app.set('view engine','ejs'), we tell Express to use EJS as our templating engine, 
 // that any file ending in .ejs should be rendered with the EJS package.
 app.set('view engine', 'ejs');
+app.use(fileupload());
 mongoose.connect('mongodb://127.0.0.1/my_database', {useNewUrlParser: true});
 
 app.get('/', async (req, res) => {
@@ -44,12 +46,13 @@ app.get('/posts/new', (req, res) => {
     res.render('create');
 });
 
-app.post('/posts/store', async (req, res) => {
-    await BlogPost.create(req.body)
-        .then(blogspot => { 
-            res.redirect('/')})
-        .catch(error => { 
-            console.log(error)})
+app.post('/posts/store', (req, res) => {
+    let image = req.files.image;
+    image.mv(path.resolve(__dirname, 'public/img', image.name), async (error) => {
+        await BlogPost.create(req.body)
+        .then(res.redirect('/'))
+        .catch(error => { console.log(error)})
+    });
 });
 
 app.listen(3000, () => {
