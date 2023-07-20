@@ -1,4 +1,4 @@
-const BlogPost = require('./models/BlogPost.js');
+const BlogPost = require('../models/BlogPost.js');
 
 module.exports = (req, res) => {
     let image = req.files.image;
