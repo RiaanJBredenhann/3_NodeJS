@@ -51,14 +51,13 @@ app.use('/posts/store', validateMiddleware);
 app.post('/posts/store', storePostController);
 app.get('/post/:id', getPostController);
 
-app.get('/auth/register', newUserController);
+app.get('/auth/register', newUserController); // renders register page
 //             (validate user)
-app.post('/users/store', storeUserController);
+app.post('/users/store', storeUserController); // saves the new user
 //               (get user)
 
-app.get('/auth/login', loginController);
-
-app.post('/users/login', loginUserController);
+app.get('/auth/login', loginController); // renders login page
+app.post('/users/login', loginUserController); // validates user inpot for login
 
 app.listen(3000, () => {
     console.log("App listening on port 3000");
