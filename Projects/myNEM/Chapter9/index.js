@@ -7,11 +7,17 @@ const fileUpload = require('express-fileupload');
 const app = new express();
 
 // Controllers
-const homeController = require('/controllers/home');
+const homeController = require('./controllers/home');
 const newPostController = require('./controllers/newPost');
 const getPostController = require('./controllers/getPost');
-const storePostController = require('./controllers/storePost')
+const storePostController = require('./controllers/storePost');
+
+//Middleware
 const validateMiddleware = require('./middleware/validationMiddleware');
+const customMiddleware = (req, res, next) => {
+    console.log("Custom middleware called");
+    next();
+}
 
 // allows the program to read static files from the public folder
 app.use(express.static('public'));
@@ -19,12 +25,6 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
-
-// adding custom middleware
-const customMiddleware = (req, res, next) => {
-    console.log("Custom middleware called");
-    next();
-}
 app.use(customMiddleware);
 
 // With app.set('view engine','ejs'), we tell Express to use EJS as our templating engine, 
