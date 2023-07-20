@@ -6,13 +6,12 @@ module.exports = (req, res) => {
 
     User.findOne({ username: username})
     .then(user => {
-        bcrypt.compare(password, user.password, (error, same) => {
-            if (same) {
-                res.redirect('/');
-            } else {
-                res.redirect('/auth/login');
-            }
-        })
+        bcrypt.compare(password, user.password)
+        .then(res.redirect('/'))
+        .catch(error => {
+            console.log(error)
+            res.redirect('/auth/login');
+        });
     }).catch(error => {
         console.log(error);
         res.redirect('/auth/login');
