@@ -3,7 +3,7 @@ const path = require('path');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
 const BlogPost = require('./models/BlogPost.js');
-const fileUploaud = require('express-fileupload');
+const fileUpload = require('express-fileupload');
 const app = new express();
 app.use(express.static('public'));
 // the next 2 functions enable the app to handle POST requests
@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 // With app.set('view engine','ejs'), we tell Express to use EJS as our templating engine, 
 // that any file ending in .ejs should be rendered with the EJS package.
 app.set('view engine', 'ejs');
-app.use(fileupload());
+app.use(fileUpload());
 mongoose.connect('mongodb://127.0.0.1/my_database', {useNewUrlParser: true});
 
 app.get('/', async (req, res) => {
@@ -32,14 +32,7 @@ app.get('/contact', (req, res) => {
 
 app.get('/post/:id', async (req, res) => {
     const blogpost = await BlogPost.findById(req.params.id)
-        .then(blogspot => {
-            console.log(blogspot);
-            res.render('post', 
-                blogpost);
-        })
-        .catch(error => {
-            console.log(error)
-        });
+    res.render('post', { blogpost });
 });
 
 app.get('/posts/new', (req, res) => {

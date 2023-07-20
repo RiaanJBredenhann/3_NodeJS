@@ -30,14 +30,7 @@ app.get('/contact', (req, res) => {
 
 app.get('/post/:id', async (req, res) => {
     const blogpost = await BlogPost.findById(req.params.id)
-        .then(blogspot => {
-            console.log(blogspot);
-            res.render('post', 
-                blogpost);
-        })
-        .catch(error => {
-            console.log(error)
-        });
+    res.render('post', { blogpost });
 });
 
 app.get('/posts/new', (req, res) => {
