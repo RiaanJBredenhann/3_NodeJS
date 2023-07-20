@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 const BlogPost = require('./models/BlogPost.js');
 // allowing files to be uploaded and handled
 const fileUpload = require('express-fileupload');
+// create a new Express application
 const app = new express();
+// allows the program to read static files from the public folder
 app.use(express.static('public'));
 // the next 2 functions enable the app to handle POST requests
 app.use(express.json());
@@ -19,12 +21,15 @@ const customMiddleware = (req, res, next) => {
 }
 app.use(customMiddleware);
 
+// validates input from user
+// if input fields are empty, redirect to /posts/new
 const validateMiddleware = (req, res, next) => {
     if (req.files == null || req.body.title == null) {
-        return res.redirect('/');
+        return res.redirect('/posts/new');
     }
     next();
 }
+app.use('/posts/store', validateMiddleware);
 
 // With app.set('view engine','ejs'), we tell Express to use EJS as our templating engine, 
 // that any file ending in .ejs should be rendered with the EJS package.
