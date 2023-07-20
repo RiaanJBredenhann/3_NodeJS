@@ -11,6 +11,7 @@ const homeController = require('/controllers/home');
 const newPostController = require('./controllers/newPost');
 const getPostController = require('./controllers/getPost');
 const storePostController = require('./controllers/storePost')
+const validateMiddleware = require('./middleware/validationMiddleware');
 
 // allows the program to read static files from the public folder
 app.use(express.static('public'));
@@ -25,8 +26,6 @@ const customMiddleware = (req, res, next) => {
     next();
 }
 app.use(customMiddleware);
-
-const validateMiddleware = require('./middleware/validationMiddleware')
 
 // With app.set('view engine','ejs'), we tell Express to use EJS as our templating engine, 
 // that any file ending in .ejs should be rendered with the EJS package.
