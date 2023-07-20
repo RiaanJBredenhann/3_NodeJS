@@ -13,6 +13,8 @@ const getPostController = require('./controllers/getPost');
 const storePostController = require('./controllers/storePost');
 const newUserController = require('./controllers/newUser');
 const storeUserController = require('./controllers/storeUser');
+const loginController = require('./controllers/login');
+const loginUserController = require('./controllers/loginUser');
 
 //Middleware
 const validateMiddleware = require('./middleware/validationMiddleware');
@@ -50,11 +52,13 @@ app.post('/posts/store', storePostController);
 app.get('/post/:id', getPostController);
 
 app.get('/auth/register', newUserController);
-// 
+//             (validate user)
 app.post('/users/store', storeUserController);
-//
+//               (get user)
 
+app.get('/auth/login', loginController);
 
+app.post('/users/login', loginUserController);
 
 app.listen(3000, () => {
     console.log("App listening on port 3000");
