@@ -57,7 +57,7 @@ app.post('/users/store', storeUserController); // saves the new user
 //               (get user)
 
 app.get('/auth/login', loginController); // renders login page
-app.post('/users/login', loginUserController); // validates user inpot for login
+app.post('/users/login', loginUserController); // validates user input for login
 
 app.listen(3000, () => {
     console.log("App listening on port 3000");
