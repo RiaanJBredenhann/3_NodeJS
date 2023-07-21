@@ -12,9 +12,6 @@ const newPostController = require('./controllers/newPost');
 const getPostController = require('./controllers/getPost');
 const storePostController = require('./controllers/storePost');
 const newUserController = require('./controllers/newUser');
-const storeUserController = require('./controllers/storeUser');
-const loginController = require('./controllers/login');
-const loginUserController = require('./controllers/loginUser');
 
 //Middleware
 const validateMiddleware = require('./middleware/validationMiddleware');
@@ -46,18 +43,14 @@ app.get('/contact', (req, res) => {
     res.render('contact');
 });
 
-app.get('/posts/new', newPostController);
-app.use('/posts/store', validateMiddleware);
-app.post('/posts/store', storePostController);
-app.get('/post/:id', getPostController);
+app.get('/posts/new', newPostController); // renders the create page
+app.use('/posts/store', validateMiddleware); // validate user input for new post
+app.post('/posts/store', storePostController); // saves the post to the database
+app.get('/post/:id', getPostController); // renders the post page
 
-app.get('/auth/register', newUserController); // renders register page
-//             (validate user)
-app.post('/users/store', storeUserController); // saves the new user
-//               (get user)
+as.get('/auth/register', newUserController); // renders the register page
+// (validate user input)
 
-app.get('/auth/login', loginController); // renders login page
-app.post('/users/login', loginUserController); // validates user input for login
 
 app.listen(3000, () => {
     console.log("App listening on port 3000");
