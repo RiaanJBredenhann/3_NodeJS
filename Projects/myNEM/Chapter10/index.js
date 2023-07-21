@@ -12,6 +12,7 @@ const newPostController = require('./controllers/newPost');
 const getPostController = require('./controllers/getPost');
 const storePostController = require('./controllers/storePost');
 const newUserController = require('./controllers/newUser');
+const storeUserController = require('./controllers/storeUser');
 
 //Middleware
 const validateMiddleware = require('./middleware/validationMiddleware');
@@ -48,8 +49,10 @@ app.use('/posts/store', validateMiddleware); // validate user input for new post
 app.post('/posts/store', storePostController); // saves the post to the database
 app.get('/post/:id', getPostController); // renders the post page
 
-as.get('/auth/register', newUserController); // renders the register page
+app.get('/auth/register', newUserController); // renders the register page
 // (validate user input)
+app.post('/users/register', storeUserController); // saves the user to the database
+// (view user)
 
 
 app.listen(3000, () => {
