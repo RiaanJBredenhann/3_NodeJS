@@ -1,4 +1,5 @@
 const express = require('express');
+const expressSession = require('express-session');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
 // allowing files to be uploaded and handled
@@ -30,6 +31,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 app.use(customMiddleware);
+app.use(expressSession({
+    secret: 'keyboard cat'
+}));
 
 // With app.set('view engine','ejs'), we tell Express to use EJS as our templating engine, 
 // that any file ending in .ejs should be rendered with the EJS package.
