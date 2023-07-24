@@ -11,7 +11,7 @@ module.exports = (req, res) => {
                     // the session package saves this data on the user's browser so that each time the user 
                     // makes a request, this cookiw will be sent back to the server with the authenticated id
                     req.session.userId = user._id;
-                    res.redirect('/');
+                    return res.redirect('/');
                 }
                 else {
                     console.log(error);

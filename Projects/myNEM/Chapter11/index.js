@@ -24,6 +24,7 @@ const customMiddleware = (req, res, next) => {
     next();
 }
 const authMiddleware = require('./middleware/authMiddleware');
+const redirectIfAuthenticstedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware');
 
 // allows the program to read static files from the public folder
 app.use(express.static('public'));
@@ -35,6 +36,11 @@ app.use(customMiddleware);
 app.use(expressSession({
     secret: 'keyboard cat'
 }));
+global.loggedIn = null;
+app.use("*", (req, res, next) => {
+    loggedIn = req.session.userId;
+    next();
+})
 
 // With app.set('view engine','ejs'), we tell Express to use EJS as our templating engine, 
 // that any file ending in .ejs should be rendered with the EJS package.
@@ -56,13 +62,13 @@ app.use('/posts/store', validateMiddleware); // validate user input for new post
 app.post('/posts/store', authMiddleware, storePostController); // saves the post to the database
 app.get('/post/:id', getPostController); // renders the post page
 
-app.get('/auth/register', newUserController); // renders the register page
+app.get('/auth/register', redirectIfAuthenticstedMiddleware, newUserController); // renders the register page
 // (validate user input)
-app.post('/users/register', storeUserController); // saves the user to the database
+app.post('/users/register', redirectIfAuthenticstedMiddleware, storeUserController); // saves the user to the database
 
-app.get('/auth/login', loginController); // renders the login page
+app.get('/auth/login', redirectIfAuthenticstedMiddleware, loginController); // renders the login page
 // (validate user input)
-app.post('/users/login', loginUserController); // logs the user in to their account
+app.post('/users/login', redirectIfAuthenticstedMiddleware, loginUserController); // logs the user in to their account
 
 app.listen(3000, () => {
     console.log("App listening on port 3000");
