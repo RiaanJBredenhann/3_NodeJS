@@ -73,6 +73,8 @@ app.post('/users/login', redirectIfAuthenticstedMiddleware, loginUserController)
 
 app.get('/auth/logout', logoutController); // logs out the current user
 
+app.use((req, res) => res.render('notfound')); // renders the error 404 page
+
 app.listen(3000, () => {
     console.log("App listening on port 3000");
 });
