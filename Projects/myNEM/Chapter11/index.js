@@ -23,6 +23,7 @@ const customMiddleware = (req, res, next) => {
     console.log("Custom middleware called");
     next();
 }
+const authMiddleware = require('./middleware/authMiddleware');
 
 // allows the program to read static files from the public folder
 app.use(express.static('public'));
@@ -50,9 +51,9 @@ app.get('/contact', (req, res) => {
     res.render('contact');
 });
 
-app.get('/posts/new', newPostController); // renders the create page
+app.get('/posts/new', authMiddleware, newPostController); // renders the create page
 app.use('/posts/store', validateMiddleware); // validate user input for new post
-app.post('/posts/store', storePostController); // saves the post to the database
+app.post('/posts/store', authMiddleware, storePostController); // saves the post to the database
 app.get('/post/:id', getPostController); // renders the post page
 
 app.get('/auth/register', newUserController); // renders the register page

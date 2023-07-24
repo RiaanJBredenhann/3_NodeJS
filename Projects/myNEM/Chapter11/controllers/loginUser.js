@@ -14,11 +14,13 @@ module.exports = (req, res) => {
                     res.redirect('/');
                 }
                 else {
+                    console.log(error);
                     res.redirect('/auth/login');
                 }
             });
         }
         else {
+            console.log(error);
             res.redirect('/auth/login');
         }
     });
