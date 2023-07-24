@@ -7,6 +7,9 @@ module.exports = (req, res) => {
         if (user) {
             bcrypt.compare(password, user.password, (error, same) => {
                 if (same) {
+                    // we assign the user id to the session
+                    // the session package saves this data on the user's browser so that each time the user 
+                    // makes a request, this cookiw will be sent back to the server with the authenticated id
                     req.session.userId = user._id;
                     res.redirect('/');
                 }
