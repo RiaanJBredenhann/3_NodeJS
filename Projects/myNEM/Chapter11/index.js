@@ -16,6 +16,7 @@ const newUserController = require('./controllers/newUser');
 const storeUserController = require('./controllers/storeUser');
 const loginController = require('./controllers/login');
 const loginUserController = require('./controllers/loginUser');
+const logoutController = require('./controllers/logout');
 
 //Middleware
 const validateMiddleware = require('./middleware/validationMiddleware');
@@ -69,6 +70,8 @@ app.post('/users/register', redirectIfAuthenticstedMiddleware, storeUserControll
 app.get('/auth/login', redirectIfAuthenticstedMiddleware, loginController); // renders the login page
 // (validate user input)
 app.post('/users/login', redirectIfAuthenticstedMiddleware, loginUserController); // logs the user in to their account
+
+app.get('/auth/logout', logoutController); // logs out the current user
 
 app.listen(3000, () => {
     console.log("App listening on port 3000");
