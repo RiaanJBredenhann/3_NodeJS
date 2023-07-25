@@ -9,7 +9,8 @@ module.exports = (req, res) => {
         // access the key's error message property
         // we also make the messages available to the view by assigning it to a variable
         const validationErrors = Object.keys(error.errors).map(key => error.errors[key].message);
-        req.session.validationErrors = validationErrors;
+        req.flash('validationErrors', validationErrors);
+        req.flash('data', req.body);
         return res.redirect('/auth/register');
     });
 }
