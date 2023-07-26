@@ -1,33 +1,27 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
-var uniqueValidator = require('mongoose-unique-validator');
 
 const UserSchema = new Schema({
     username: {
         type: String,
-        required: [true, "Please provide a Username"],
+        required: true,
         unique: true
     },
     password: {
         type: String,
-        required: [true, "Please provide a Password"]
+        required: true
     }
 });
 
-// validator will check for duplicate database entries and report them
-UserSchema.plugin(uniqueValidator);
-
 // we tell mongoose that before we save any record into the Users Schema or collection,
 // we first have to excecute the 2nd argument
-UserSchema.pre('save', function (next) {
+UserSchema.pre('save', function(next) {
     const user = this;
-    bcrypt.hash(user.password, 10)
-    .then(hash => {
-        user.password = hash
+    bcrypt.hash(user.password, 10, (error, hash) => {
+        user.password = hash;
         next();
-    })
-    .catch(error => console.log(error));
+    });
 });
 
 const User = mongoose.model('User', UserSchema);
