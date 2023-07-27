@@ -48,7 +48,7 @@ app.use(flash());
 // With app.set('view engine','ejs'), we tell Express to use EJS as our templating engine, 
 // that any file ending in .ejs should be rendered with the EJS package.
 app.set('view engine', 'ejs');
-mongoose.connect('mongodb://127.0.0.1/my_database', {useNewUrlParser: true});
+mongoose.connect('+srv://riaanbredenhann:@RiancaCB123@cleanblog.keowjim.mongodb.net/Clean_Blog', {useNewUrlParser: true});
 
 app.get('/', homeController);
 
