@@ -7,14 +7,24 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const BlogPostSchema = new Schema({
-    title: String,
+    title: {
+        type: String,
+        required: [true, "Please provide a Title"]
+    },
     body: String,
-    username: String,
+    userid: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     datePosted: {
         type: Date,
         default: new Date()
     },
-    image: String
+    image: {
+        type: String,
+        required: [true, "Please provide an Image"]
+    }
 });
 
 // We access the database via mongoose.model. 
