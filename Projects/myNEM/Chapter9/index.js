@@ -12,7 +12,7 @@ const newPostController = require('./controllers/newPost');
 const getPostController = require('./controllers/getPost');
 const storePostController = require('./controllers/storePost');
 
-//Middleware
+// Middleware
 const validateMiddleware = require('./middleware/validationMiddleware');
 const customMiddleware = (req, res, next) => {
     console.log("Custom middleware called");
